@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+void insertion_sort(int a[], int length);
+
+int main() {
+    int a[] = {8, 4, 9, 5, 7, 6, 3, 2};
+    int length = sizeof(a) / sizeof(a[0]);
+
+    printf("Array before sorting: ");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+
+    insertion_sort(a, length);
+
+    printf("Array after sorting: ");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+void insertion_sort(int a[], int length) { 
+    for (int i = 1; i < length; i++) { 
+        int key = a[i]; 
+        int j = i - 1;
+
+        while (j >= 0 && a[j] > key) {
+            a[j + 1] = a[j]; // Making space for insertion of key because it is smaller. It shifts every element that is bigger to the right to make space for the insertion.
+            j = j - 1; // j, which is the rightmost value, is decremented (j = j - 1) to continue checking the previous elements.
+        }
+
+        a[j + 1] = key; // Point of insertion because j is already the innermost value (the point where a[j] <= key). So, the point of insertion is the empty space after that, which is j + 1.
+    }
+}
